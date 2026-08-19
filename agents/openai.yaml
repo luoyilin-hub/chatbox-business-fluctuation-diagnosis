@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chatbox 业务波动诊断"
+  short_description: "系统下钻收入、付费、转化、使用和成本等业务指标的周期波动"
+  default_prompt: "Use $chatbox-business-fluctuation-diagnosis to complete the intake and diagnose a Chatbox business metric fluctuation."
+
+policy:
+  allow_implicit_invocation: true

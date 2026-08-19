@@ -1,0 +1,55 @@
+[skill]
+version = "1.0.0"
+display_name = "Chatbox 业务波动诊断"
+
+[defaults]
+timezone = "Asia/Shanghai"
+stable_baseline_statistic = "mean"
+require_stable_baseline_confirmation = true
+revenue_basis = "successful_amount_paid"
+refund_handling = "separate_then_bridge_to_net"
+model_scope = "all_models_first"
+anomaly_handling = "show_full_and_routine_views"
+evidence_language = "association_unless_experimental"
+
+[default_comparisons]
+day = "previous_day"
+complete_week = "previous_complete_week"
+partial_week = "same_elapsed_days_previous_week"
+complete_month = "previous_complete_month"
+partial_month = "same_elapsed_days_previous_month"
+custom_range = "immediately_preceding_equal_length_range"
+
+[payer_lifecycle]
+new_payer = "first_historical_successful_payment_occurs_in_target_period"
+existing_payer = "at_least_one_successful_payment_before_target_period"
+registered_and_paid_same_day = "independent_label_not_new_payer_definition"
+
+[plan_contract]
+historical_attribution = "plan_at_behavior_time"
+current_targeting = "plan_at_query_time"
+allow_current_plan_as_historical_fallback = false
+
+[point_contract]
+raw_billing_field = "billed_tokens"
+pro_usage_type = "model-pro"
+pro_multiplier = 8
+other_multiplier = 1
+date_field = "created_at"
+deprecated_partition_field = "dt"
+
+[model_branch]
+default = "all_models"
+named_model_triggers = [
+  "explicit_user_request",
+  "price_or_entitlement_change",
+  "model_rollout_or_routing_change",
+  "material_shift_found_in_general_distribution",
+]
+
+[maintenance]
+proposal_before_update = true
+record_version = true
+record_change_log = true
+run_validation = true
+run_relevant_regression_cases = true
