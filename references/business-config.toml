@@ -1,5 +1,5 @@
 [skill]
-version = "1.0.0"
+version = "1.1.0"
 display_name = "Chatbox 业务波动诊断"
 
 [defaults]
@@ -46,6 +46,16 @@ named_model_triggers = [
   "model_rollout_or_routing_change",
   "material_shift_found_in_general_distribution",
 ]
+
+[mandatory_drilldown]
+material_absolute_revenue_usd = 300
+material_net_change_share = 0.10
+volume_change_rate = 0.10
+funnel_rate_change_pp = 0.5
+routing_share_change_pp = 10.0
+recursive = true
+explicit_user_branch_always = true
+statuses = ["已归因", "已下拆，原因待确认", "需补充数据", "尚不明确"]
 
 [maintenance]
 proposal_before_update = true

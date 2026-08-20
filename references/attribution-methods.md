@@ -18,6 +18,20 @@ When useful, separate:
 
 State the chosen standardization or decomposition method.
 
+## Population and denominator discipline
+
+Define the eligible population before interpreting a rate. A selected outcome cohort, such as quota-pack buyers or successful payers, can describe behavior within that cohort but cannot explain why the number of buyers or payers changed. To explain outcome volume, compare an eligible full-population denominator and its outcome rate, or label the explanation as incomplete and name the missing denominator.
+
+Keep numerator and denominator on consistent event-time, eligibility, geography, plan, and identity contracts. Show unmatched and unknown populations rather than silently dropping them.
+
+## Materiality and recursive drilldown
+
+Use the configured thresholds as investigation triggers, not as proof of importance. Explicit user questions always trigger their branch. Zero-to-material and material-to-zero payment-routing cells are material even when percentage changes are undefined.
+
+Apply the triggers again after every valid decomposition. A material parent should not stop at a broad segment such as order type, country, or client when one or more of its child drivers also exceed a trigger. Continue until the mechanism is supported, the remaining children are below threshold, the required evidence is unavailable, or the available evidence remains genuinely inconclusive.
+
+When the overall net change is zero or near zero because positive and negative movements offset, judge materiality from absolute movement within one valid axis. Do not combine overlapping country, product, OS, payment, or lifecycle contributions to imply completeness.
+
 ## Concentration and anomaly checks
 
 Use top-1/top-5/top-10 user and order shares, repeated-amount clusters, time density, device or IP concentration when permitted, and contradictions across country, currency, language, payment, and client. Hash identifiers in outputs unless raw details are explicitly required and authorized.

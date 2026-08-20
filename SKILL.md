@@ -9,9 +9,9 @@ Use one stable reasoning framework across plan-only, JDBC analysis, Spark SQL, d
 
 ## Required intake
 
-Before querying data, writing executable SQL, designing a dashboard, or producing a final attribution report, read [references/request-form.md](references/request-form.md). Extract answers already present in the user's request, display the completed fields, and ask only for missing required fields. Do not execute until the required fields are complete.
+Before querying data, writing executable SQL, designing a dashboard, or producing a final attribution report, read [references/request-form.md](references/request-form.md). Put the complete intake at the very beginning of the response: render questions 1–9, every lettered option, the current answer and source for each field, and the execution status. Never replace it with a completed-field summary. Re-render the complete intake after any material answer changes.
 
-Use defaults from [references/business-config.toml](references/business-config.toml). A completed form authorizes only the execution and deliverables selected in that form.
+Extract answers already present in the user's request and ask only for missing required answers. Use defaults from [references/business-config.toml](references/business-config.toml), but label every default as proposed until the user accepts it. Do not execute until fields 1–8 are complete and the displayed form is explicitly confirmed. A confirmed form authorizes only the execution and deliverables selected in that form.
 
 ## Core workflow
 
@@ -22,9 +22,12 @@ After intake is complete, read [references/core-framework.md](references/core-fr
 3. Separate anomalies and concentrated events from routine business movement. Report both the complete result and the routine result with material anomalies isolated.
 4. Drill through lifecycle, order purpose, product, geography, payment, client, and acquisition context as supported by the target metric.
 5. Enter usage, model, Agent Mode, survey, or profile branches only when the basic decomposition identifies a relevant cohort or the intake states a relevant hypothesis.
-6. Distinguish direct facts, arithmetic attribution, behavioral association, business hypothesis, and experimental evidence.
+6. Apply the materiality thresholds recursively. When a branch exceeds a trigger, continue drilling into its material child drivers until the cause is supported, the remaining children are below threshold, or the exact evidence gap is recorded.
+7. Distinguish direct facts, arithmetic attribution, behavioral association, business hypothesis, and experimental evidence.
 
 Use [references/metric-contracts.md](references/metric-contracts.md) whenever computing revenue, payers, first payment, plans, points, refunds, or payment-client attribution. Use [references/attribution-methods.md](references/attribution-methods.md) for contribution, concentration, behavioral windows, and causal-language rules.
+
+When paid upgrades, quota packs, payment currency or routing, or the registration-to-payment funnel is material or explicitly requested, read [references/mandatory-drilldown-rules.md](references/mandatory-drilldown-rules.md) and complete the applicable branch. Do not run irrelevant branches merely because they exist.
 
 ## Execution modes
 
@@ -40,7 +43,7 @@ Read [references/output-modes.md](references/output-modes.md) only for selected 
 
 ## Conditional model investigations
 
-Default to all-model call and unified-point distributions when model usage is relevant. Open a DeepSeek, V4, or other named-model branch only when:
+Default to all-model call and unified-point distributions when model usage is relevant. Run a DeepSeek, V4, or other named-model branch only when:
 
 - the intake explicitly asks about that model;
 - a price, entitlement, rollout, or routing change creates a model-specific hypothesis; or
@@ -51,6 +54,8 @@ Never promote a model-specific historical case into the default daily path. Pre-
 ## Cases
 
 Cases illustrate decisions and reusable paths; they are not universal rules. For a quota-pack-to-upgrade question with an explicit V4 hypothesis, read [references/cases/lite-quota-upgrade-intent.md](references/cases/lite-quota-upgrade-intent.md).
+
+For regression behavior covering upgrade decline, quota-pack decline, payment-routing shifts, and registration-payment funnel decline, use [references/cases/daily-multi-branch-drilldown.md](references/cases/daily-multi-branch-drilldown.md). It tests recursive threshold behavior and business-readable reporting; it is not a mandatory daily branch list.
 
 ## Maintenance mode
 

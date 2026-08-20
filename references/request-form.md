@@ -1,6 +1,17 @@
 # Analysis intake
 
-Complete this form before execution. Infer and prefill fields from the user's request. Show the current form and ask only for missing required answers. Natural-language answers are valid; option letters are shortcuts.
+Complete and confirm this form before execution. Infer and prefill fields from the user's request. Natural-language answers are valid; option letters are shortcuts.
+
+## Rendering contract
+
+Place this complete form before any plan, analysis, conclusion, SQL, or deliverable. Every rendering must include:
+
+- questions 1–9 in order, including optional question 9;
+- every lettered option under every question, even when an answer is already known;
+- `Current answer`, `Answer source` (`user`, `proposed default`, or `missing`), and `Field status` under each question;
+- the confirmation block and execution status at the end.
+
+Do not replace the form with a summary of completed fields. Infer and prefill what the user already supplied, but ask only for missing required answers. Re-render the entire form after any material answer changes. A proposed default is not confirmed merely because it was displayed.
 
 ## 1. Metric or phenomenon — required
 
@@ -102,4 +113,11 @@ Capture deadline, privacy rules, unavailable data, cost or performance limits, r
 
 ## Completion gate
 
-Fields 1–8 must be filled. A default is valid only after it is displayed and accepted by the user. Once the form is complete, proceed with the selected scope without asking for a redundant second confirmation. Pause only when a newly discovered ambiguity would materially change the result.
+End every rendered form with this confirmation block:
+
+- Required fields 1–8: `complete` or list the missing fields.
+- Proposed defaults awaiting acceptance: list them or write `none`.
+- Explicit exclusions and constraints: summarize them or write `none`.
+- Execution status: `waiting for confirmation` or `confirmed`.
+
+Fields 1–8 must be filled, and the displayed complete form must be explicitly confirmed before execution. A default is valid only after the user accepts it. Any material change to a confirmed answer resets execution status to `waiting for confirmation`. After confirmation, proceed within the selected scope without asking for another redundant confirmation. Pause only when newly discovered ambiguity would materially change the result.
