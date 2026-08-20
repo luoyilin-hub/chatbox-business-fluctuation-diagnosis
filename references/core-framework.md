@@ -21,7 +21,7 @@ For revenue, begin with:
 
 Also bridge registration, new payer, existing payer, order count, gross revenue, refunds, and net revenue when relevant. For non-revenue targets, define the corresponding numerator, denominator, and population before segmenting.
 
-Attribute the top-level movement with an order-independent method when interactions matter. Do not start with country, OS, or model tables before establishing whether the primary change is scale, frequency, price, or data quality.
+Attribute the overall metric movement with an order-independent method when interactions matter. Do not start with country, OS, or model tables before establishing whether the primary change is scale, frequency, price, or data quality.
 
 ## 3. Separate anomalies from routine movement
 
@@ -78,7 +78,22 @@ For usage-driven purchases, examine pre-payment total usage, unified points, dep
 
 Profile and paid-survey data explain the identified cohort. Always show coverage and missingness, and avoid making uncovered users resemble the covered sample.
 
-## 6. Report evidence and decisions
+## 6. Continue every material drilldown
+
+Use the thresholds in `business-config.toml` as recursive investigation triggers. A user-requested branch always runs regardless of size. For paid upgrades, quota packs, payment currency or routing, and the registration-payment funnel, follow `mandatory-drilldown-rules.md`.
+
+After decomposing a material parent into one valid additive or explicitly decomposed axis, reapply the thresholds to its child drivers. Continue into every triggered child until one of the documented stop conditions is met. A segment moving in the same direction as the target is only a first-level observation; it is not a sufficient explanation.
+
+Assign one business-readable progress label to each reported material finding:
+
+- `已归因`: the contribution, affected population, and supported business mechanism are established;
+- `已下拆，原因待确认`: the numerical driver or cohort is located, but the underlying reason still needs verification;
+- `需补充数据`: the next required field, log, event, or denominator is unavailable or unreliable;
+- `尚不明确`: available evidence is conflicting or does not identify a dominant explanation.
+
+Do not add contributions from overlapping country, product, OS, payment, or lifecycle views. Thresholds control analytical depth; they must not become report chapter names or management-facing coverage scores.
+
+## 7. Report evidence and decisions
 
 For each material conclusion provide:
 
